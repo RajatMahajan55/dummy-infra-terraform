@@ -1,3 +1,3 @@
 locals {
-  name = "sample.dummy-project.com"
+  sample_name = "sample.dummy-project.com"
 }

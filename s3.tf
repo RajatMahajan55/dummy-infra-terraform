@@ -1,25 +1,11 @@
-resource "aws_s3_bucket" "b" {
-  bucket = local.name
-  acl    = "private"
-
-  tags = {
-    Name = "My bucket"
-  }
+output "name" {
+  value = var.name
 }
 
-data "aws_iam_policy_document" "s3_policy" {
-  statement {
-    actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.b.arn}/*"]
-
-    principals {
-      type        = "AWS"
-      identifiers = [aws_cloudfront_origin_access_identity.origin_access_identity.iam_arn]
-    }
-  }
+output "region" {
+  value = var.region
 }
 
-resource "aws_s3_bucket_policy" "example" {
-  bucket = aws_s3_bucket.b.id
-  policy = data.aws_iam_policy_document.s3_policy.json
+output "account_id" {
+  value = var.account_id
 }
